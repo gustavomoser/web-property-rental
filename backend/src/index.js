@@ -1,5 +1,13 @@
 import { PORT } from "./env";
-import { connect, getProperties } from "./db";
+import {
+  addProperty,
+  connect,
+  getProperties,
+  login,
+  reset,
+  updatePropertyState,
+  addInterest,
+} from "./db";
 import express from "express";
 import http from "http";
 import path from "path";
@@ -12,7 +20,7 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
 app.get("/properties", async (req, res) => {
-  const filter = req.body.filter;
+  const filter = null;
   if (filter) {
   } else {
     const properties = await getProperties();
@@ -22,20 +30,91 @@ app.get("/properties", async (req, res) => {
 
 // REQUISICOES PARA UM CORRETOR
 // requisição para aprovar login
-app.post("/login", async (req, res) => {});
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  if (username && password) {
+    const l = await login(username, password);
+    res.json(!!l);
+  } else {
+    res.json("Problema ao efetuar login.");
+  }
+});
 
 // requisição para fazer troca de senha
-app.post("/reset", async (req, res) => {});
+app.post("/reset", async (req, res) => {
+  const { username, password } = req.body;
+  if (username && password) {
+    const l = await reset(username, password);
+    res.json(l);
+  } else {
+    res.json("Problema ao atualizar senha.");
+  }
+});
 
 // requisição para cadastrar imóvel
-app.post("/property", async (req, res) => {});
+app.post("/property", async (req, res) => {
+  const {
+    nrInscricao,
+    img,
+    endereco,
+    tipo,
+    nrDormitorios,
+    nrBanheiros,
+    nrVagas,
+    valor,
+  } = req.body;
+  if (
+    nrInscricao &&
+    img &&
+    endereco &&
+    tipo &&
+    nrDormitorios &&
+    nrBanheiros &&
+    nrVagas &&
+    valor
+  ) {
+    const p = await addProperty(
+      nrInscricao,
+      img,
+      endereco,
+      tipo,
+      nrDormitorios,
+      nrBanheiros,
+      nrVagas,
+      valor
+    );
+    if (p) {
+      res.json(!!p);
+    } else {
+      res.json("Já existe um imóvel com este número de inscrição.");
+    }
+  } else {
+    res.json("Problema ao inserir imóvel.");
+  }
+});
 
 // requisição para alterar situação de um imóvel
-app.post("/property/update", async (req, res) => {});
+app.post("/update", async (req, res) => {
+  const { nrInscricao, situacao } = req.body;
+  if (nrInscricao && situacao) {
+    const item = await updatePropertyState(nrInscricao, situacao);
+    res.json(item);
+  } else {
+    res.json("Problema ao atualizar imóvel.");
+  }
+});
 
 // REQUISICOES PARA UM INQUILINO
 // requisição para manifestar interesse em um imóvel
-app.post("/interest", async (req, res) => {});
+app.post("/interest", async (req, res) => {
+  const { nome, telefone, nr_inscricao } = req.body;
+  if (nr_inscricao && telefone && nome) {
+    const item = await addInterest(nr_inscricao, nome, telefone);
+    res.json(item);
+  } else {
+    res.json("Problema ao inscrever interesse.");
+  }
+});
 
 const server = http.createServer(app);
 connect();
