@@ -87,8 +87,8 @@ export async function addInterest(nr_inscricao, nome, telefone) {
     } else {
       const item = await collection.insertOne({
         nr_inscricao,
-        nome: nome,
-        telefone: telefone,
+        nome,
+        telefone,
       });
       return item;
     }
