@@ -13,14 +13,14 @@ export async function connect() {
 
 export async function login(username, password) {
   const collection = driver.collection("user");
-  const query = { username: username, password: password };
+  const query = { username, password };
   const user = await collection.findOne(query);
   return user;
 }
 
 export async function reset(username, newPassword) {
   const collection = driver.collection("user");
-  const query = { username: username };
+  const query = { username };
   const toUpdate = {
     $set: { password: newPassword },
   };
@@ -34,44 +34,44 @@ export async function getProperties() {
   return properties;
 }
 
-export async function getPropertyByInscricao(nrInscricao) {
+export async function getPropertyByInscricao(nr_inscricao) {
   const collection = driver.collection("property");
-  const property = await collection.findOne({ nr_inscricao: nrInscricao });
+  const property = await collection.findOne({ nr_inscricao });
   return !!property;
 }
 
-export async function updatePropertyState(nrInscricao, situacao) {
+export async function updatePropertyState(nr_inscricao, situacao) {
   const collection = driver.collection("property");
-  const query = { nr_inscricao: nrInscricao };
+  const query = { nr_inscricao: nr_inscricao };
   const toUpdate = {
-    $set: { situacao: situacao },
+    $set: { situacao },
   };
   const updated = await collection.updateOne(query, toUpdate);
   return updated;
 }
 
 export async function addProperty(
-  nrInscricao,
+  nr_inscricao,
   img,
   endereco,
   tipo,
-  nrDormitorios,
-  nrBanheiros,
-  nrVagas,
+  nr_dormitorios,
+  nr_banheiros,
+  nr_vagas_garagem,
   valor
 ) {
   const collection = driver.collection("property");
   let insert = null;
   if (!!getProperty(nrInscricao)) {
     insert = await collection.insertOne({
-      nr_inscricao: nrInscricao,
+      nr_inscricao,
       img,
       endereco,
       tipo,
-      nr_dormitorios: nrDormitorios,
-      nr_banheiros: nrBanheiros,
-      nr_vagas_garagem: nrVagas,
-      valor,
+      nr_dormitorios: parseInt(nr_dormitorios),
+      nr_banheiros: parseInt(nr_banheiros),
+      nr_vagas_garagem: parseInt(nr_vagas_garagem),
+      valor: parseFloat(valor),
     });
   }
   return insert;
