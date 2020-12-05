@@ -1,10 +1,12 @@
 import { MONGO_URL } from "./env";
 import { MongoClient } from "mongodb";
-const driver = new MongoClient(MONGO_URL, { useUnifiedTopology });
+let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
 
 export async function connect() {
   driver.connect((err, conn) => {
-    err && console.log(err);
+    if (err) {
+      console.log(err);
+    }
     driver = conn.db("WEB_PROPERTY_RENTAL");
   });
 }

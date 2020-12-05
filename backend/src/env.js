@@ -19,6 +19,6 @@ if (!process.env.MONGO_URL) {
 
 error && process.exit(1);
 
-const PORTA = parseInt(process.env.PORT);
+const PORT = parseInt(process.env.PORT);
 const MONGO_URL = process.env.MONGO_URL;
-export { PORTA, MONGO_URL };
+export { PORT, MONGO_URL };

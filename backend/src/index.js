@@ -11,15 +11,14 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
-app,
-  get("/properties", async (req, res) => {
-    const filter = req.body.filter;
-    if (filter) {
-    } else {
-      const properties = await getProperties();
-      res.json(properties);
-    }
-  });
+app.get("/properties", async (req, res) => {
+  const filter = req.body.filter;
+  if (filter) {
+  } else {
+    const properties = await getProperties();
+    res.json(properties);
+  }
+});
 
 // REQUISICOES PARA UM CORRETOR
 // requisição para aprovar login
@@ -38,6 +37,6 @@ app.post("/property/update", async (req, res) => {});
 // requisição para manifestar interesse em um imóvel
 app.post("/interest", async (req, res) => {});
 
-connect();
 const server = http.createServer(app);
+connect();
 server.listen(PORT, () => console.log(`Rodando em ${PORT}`));
