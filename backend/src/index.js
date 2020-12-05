@@ -1,8 +1,9 @@
 import { PORT } from "./env";
-import { connect } from "./db";
+import { connect, getProperties } from "./db";
 import express from "express";
 import http from "http";
 import path from "path";
+import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
 const bodyParser = require("body-parser");
@@ -10,7 +11,15 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
-app, get("/properties", async (req, res) => {});
+app,
+  get("/properties", async (req, res) => {
+    const filter = req.body.filter;
+    if (filter) {
+    } else {
+      const properties = await getProperties();
+      res.json(properties);
+    }
+  });
 
 // REQUISICOES PARA UM CORRETOR
 // requisição para aprovar login

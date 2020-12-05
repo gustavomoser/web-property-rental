@@ -9,6 +9,12 @@ export async function connect() {
   });
 }
 
+export async function getProperties() {
+  const collection = driver.collection("property");
+  const properties = await collection.find().toArray();
+  return properties;
+}
+
 export async function addProperty() {
   const collection = driver.collection("property");
 }
