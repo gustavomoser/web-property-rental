@@ -27,7 +27,7 @@ app.post("/property/update", async (req, res) => {});
 
 // REQUISICOES PARA UM INQUILINO
 // requisição para manifestar interesse em um imóvel
-app.post("/interest");
+app.post("/interest", async (req, res) => {});
 
 connect();
 const server = http.createServer(app);
