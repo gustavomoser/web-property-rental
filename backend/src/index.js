@@ -20,8 +20,10 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
 app.get("/properties", async (req, res) => {
-  const filter = null;
+  const filter = req.query;
   if (filter) {
+    const properties = await getPropertiesWithFilter(filter);
+    res.json(properties);
   } else {
     const properties = await getProperties();
     res.json(properties);

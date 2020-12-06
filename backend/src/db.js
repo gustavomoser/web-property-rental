@@ -1,5 +1,6 @@
 import { MONGO_URL } from "./env";
-import { MongoClient } from "mongodb";
+import { Int32, MongoClient } from "mongodb";
+import { query } from "express";
 let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
 
 export async function connect() {
@@ -95,4 +96,41 @@ export async function addInterest(nr_inscricao, nome, telefone) {
   } else {
     return "Este imóvel não existe.";
   }
+}
+
+export async function getPropertiesWithFilter(filter) {
+  const collection = driver.collection("property");
+  console.log("Filter:")
+  console.log(filter)
+  
+  var query = {}
+
+  if(filter.tipo){
+    query.tipo = filter.tipo
+  }
+  if(filter.nr_banheiros){
+    query.nr_banheiros = parseInt(filter.nr_banheiros)
+  }
+  if(filter.nr_dormitorios){
+    query.nr_dormitorios = parseInt(filter.nr_dormitorios)
+  }
+  if(filter.nr_vagas_garagem){
+    query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem)
+  }
+  if(filter.valor){
+    query.valor = parseDouble(filter.valor)
+  }
+
+  console.log("Query:")
+  console.log(query)
+
+  const properties = await collection.find(query).toArray();
+  return properties;
+}
+
+export async function login(username, password) {
+  const collection = driver.collection("user");
+  const query = { username: username, password: password };
+  const properties = await collection.findOne(query);
+  return properties;
 }
