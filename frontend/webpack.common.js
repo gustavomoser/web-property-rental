@@ -4,7 +4,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const config = {
+<<<<<<< HEAD
   entry: path.resolve(__dirname, "./src/index.jsx"),
+=======
+  entry: path.resolve(__dirname, './src/index.jsx'),
+>>>>>>> base da pag principal
   output: {
     path: path.resolve(__dirname, "../backend/public"),
     filename: "[name].[contenthash].bundle.js",
