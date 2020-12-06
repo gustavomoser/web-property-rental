@@ -1,6 +1,5 @@
 import "./App.css"
 import React from "react"
-import PropertyBox from "./components/property-box"
 
 export default function App() {
   return (
