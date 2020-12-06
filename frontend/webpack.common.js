@@ -1,51 +1,49 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const config = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, "./src/index.jsx"),
   output: {
-    path: path.resolve(__dirname, '../backend/public'),
-    filename: '[name].[contenthash].bundle.js'
+    path: path.resolve(__dirname, "../backend/public"),
+    filename: "[name].[contenthash].bundle.js",
   },
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
-  plugins: [ 
+  plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin(
-      {
-        title: 'Web Property Rental',
-        meta: {
-          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
-        }
-      }),
-    new webpack.HashedModuleIdsPlugin()
+    new HtmlWebpackPlugin({
+      title: "Web Property Rental",
+      meta: {
+        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
+      },
+    }),
+    new webpack.HashedModuleIdsPlugin(),
   ],
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/
+        test: /\.(js|jsx)$/,
+        use: "babel-loader",
+        exclude: /node_modules/,
       },
       {
-        test: /\.css$/, 
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
-  }
-}
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+};
 
-module.exports = config
+module.exports = config;
