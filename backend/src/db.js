@@ -1,6 +1,5 @@
 import { MONGO_URL } from "./env";
-import { Int32, MongoClient } from "mongodb";
-import { query } from "express";
+import { MongoClient } from "mongodb";
 let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
 
 export async function connect() {
@@ -100,62 +99,33 @@ export async function addInterest(nr_inscricao, nome, telefone) {
 
 export async function getPropertiesWithFilter(filter) {
   const collection = driver.collection("property");
-  console.log("Filter:")
-  console.log(filter)
-  
-  var query = {}
 
-  // if(filter.tipo){
-  //   query.tipo = filter.tipo
-  // }
-  // if(filter.nr_banheiros){
-  //   query.nr_banheiros = parseInt(filter.nr_banheiros)
-  // }
-  // if(filter.nr_dormitorios){
-  //   query.nr_dormitorios = parseInt(filter.nr_dormitorios)
-  // }
-  // if(filter.nr_vagas_garagem){
-  //   query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem)
-  // }
-  // if(filter.valor){
-  //   query.valor = parseDouble(filter.valor)
-  // }
-
-  if(filter.tipo){
-    query.tipo = filter.tipo
+  var query = {};
+  if (filter.tipo) {
+    query.tipo = filter.tipo;
   }
-  if(filter.nr_banheiros){
-    query.nr_banheiros = parseInt(filter.nr_banheiros)
+  if (filter.nr_banheiros) {
+    query.nr_banheiros = parseInt(filter.nr_banheiros);
   }
-  if(filter.nr_dormitorios){
-    query.nr_dormitorios = parseInt(filter.nr_dormitorios)
+  if (filter.nr_dormitorios) {
+    query.nr_dormitorios = parseInt(filter.nr_dormitorios);
   }
-  if(filter.nr_vagas_garagem){
-    query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem)
+  if (filter.nr_vagas_garagem) {
+    query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem);
   }
 
-  if(filter.valorMaximo && filter.valorMinimo) {
-    query.valor = {$lte: parseFloat(filter.valorMaximo), $gte: parseFloat(filter.valorMinimo)}
+  if (filter.valorMaximo && filter.valorMinimo) {
+    query.valor = {
+      $lte: parseFloat(filter.valorMaximo),
+      $gte: parseFloat(filter.valorMinimo),
+    };
   } else {
-    if(filter.valorMaximo){
-      query.valor = {$lte: parseFloat(filter.valorMaximo)}
-    } else if(filter.valorMinimo){
-      query.valor = {$gte: parseFloat(filter.valorMinimo)}
+    if (filter.valorMaximo) {
+      query.valor = { $lte: parseFloat(filter.valorMaximo) };
+    } else if (filter.valorMinimo) {
+      query.valor = { $gte: parseFloat(filter.valorMinimo) };
     }
   }
-
-  
-
-  console.log("Query:")
-  console.log(query)
-
   const properties = await collection.find(query).toArray();
   return properties;
 }
-
-// export async function login(username, password) {
-//   const collection = driver.collection("user");
-//   const query = { username: username, password: password };
-//   const properties = await collection.findOne(query);
-//   return properties;
-// }
