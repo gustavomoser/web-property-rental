@@ -105,6 +105,22 @@ export async function getPropertiesWithFilter(filter) {
   
   var query = {}
 
+  // if(filter.tipo){
+  //   query.tipo = filter.tipo
+  // }
+  // if(filter.nr_banheiros){
+  //   query.nr_banheiros = parseInt(filter.nr_banheiros)
+  // }
+  // if(filter.nr_dormitorios){
+  //   query.nr_dormitorios = parseInt(filter.nr_dormitorios)
+  // }
+  // if(filter.nr_vagas_garagem){
+  //   query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem)
+  // }
+  // if(filter.valor){
+  //   query.valor = parseDouble(filter.valor)
+  // }
+
   if(filter.tipo){
     query.tipo = filter.tipo
   }
@@ -117,9 +133,18 @@ export async function getPropertiesWithFilter(filter) {
   if(filter.nr_vagas_garagem){
     query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem)
   }
-  if(filter.valor){
-    query.valor = parseDouble(filter.valor)
+
+  if(filter.valorMaximo && filter.valorMinimo) {
+    query.valor = {$lte: parseFloat(filter.valorMaximo), $gte: parseFloat(filter.valorMinimo)}
+  } else {
+    if(filter.valorMaximo){
+      query.valor = {$lte: parseFloat(filter.valorMaximo)}
+    } else if(filter.valorMinimo){
+      query.valor = {$gte: parseFloat(filter.valorMinimo)}
+    }
   }
+
+  
 
   console.log("Query:")
   console.log(query)
@@ -128,9 +153,9 @@ export async function getPropertiesWithFilter(filter) {
   return properties;
 }
 
-export async function login(username, password) {
-  const collection = driver.collection("user");
-  const query = { username: username, password: password };
-  const properties = await collection.findOne(query);
-  return properties;
-}
+// export async function login(username, password) {
+//   const collection = driver.collection("user");
+//   const query = { username: username, password: password };
+//   const properties = await collection.findOne(query);
+//   return properties;
+// }

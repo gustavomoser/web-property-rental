@@ -3,6 +3,7 @@ import {
   addProperty,
   connect,
   getProperties,
+  getPropertiesWithFilter,
   login,
   reset,
   updatePropertyState,
