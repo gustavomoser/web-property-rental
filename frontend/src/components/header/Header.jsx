@@ -1,9 +1,9 @@
-import "./Login.css"
+import "./Header.css"
 import React from "react"
 import { Link } from 'react-router-dom'
-import logo from "./imagens/logo-branco.png"
+import logo from "../../images/header/logo-branco.png"
 
-export default function Login(){
+export default function Header(){
     return(
         <div className="Header">
             <header>
