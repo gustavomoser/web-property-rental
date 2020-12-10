@@ -3,6 +3,12 @@ import { useState } from "react"
 export default function AddProperty(props) {
   const [formData, setFormData] = useState({
     nrInscricao: "",
+    descricao: "",
+    endereco: "",
+    tipo: "",
+    nrQuartos: "",
+    nrBanheiros: "",
+    nrGaragens: "",
   })
 
   const handleInputChange = (event) => {
@@ -20,8 +26,8 @@ export default function AddProperty(props) {
           <p className="title-register">Faça seu login:</p>
           <form onSubmit={handleSubmit}>
             <input type="number" name="nrInscricao" onChange={handleInputChange} />
-            <input name="descricao" onChange={() => {}} />
-            <input name="endereco" onChange={() => {}} />
+            <input name="descricao" onChange={handleInputChange} />
+            <input name="endereco" onChange={handleInputChange} />
             <fieldset>
               <legend>
                 <h2>Tipo do imóvel</h2>
@@ -35,13 +41,15 @@ export default function AddProperty(props) {
                 <input type="radio" name="apto" value="apartamento" checked={type === "apartamento"} />
               </div>
             </fieldset>
-            <input type="number" name="nrQuartos" onChange={() => {}} />
-            <input type="number" name="nrBanheiros" onChange={() => {}} />
-            <input type="number" name="nrGaragens" onChange={() => {}} />
-
-            <button type="submit" className="submit-button">
-              Login
-            </button>
+            <input type="number" name="nrQuartos" onChange={handleInputChange} />
+            <input type="number" name="nrBanheiros" onChange={handleInputChange} />
+            <input type="number" name="nrGaragens" onChange={handleInputChange} />
+            <div>
+              <button className="submit-button">Cancelar</button>
+              <button type="submit" className="submit-button">
+                Salvar
+              </button>
+            </div>
           </form>
         </div>
       </div>

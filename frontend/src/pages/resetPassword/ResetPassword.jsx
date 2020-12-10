@@ -73,7 +73,7 @@ export default function ResetPassword() {
           <br />
           {!passwordMatch && <label style={{ color: "red" }}>Senhas não correspondem</label>}
           <button type="submit" class="submit-button">
-            Cadastrar
+            Salvar
           </button>
         </form>
       </div>
