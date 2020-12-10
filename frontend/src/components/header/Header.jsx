@@ -8,7 +8,8 @@ export default function Header(){
         <header>
             <div className="header-left">
                 <img className="header-logo" src={logo}></img>
-                <a href="#contact"className="header-text">Contato</a>
+                <Link to="/" className="header-text">Home</Link>
+                {/* <a href="#contact"className="header-text">Contato</a> */}
             </div>
 
             <div className="header-right">
