@@ -15,6 +15,7 @@ import path from "path";
 import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
+app.use(express.json());
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, "../public")));
@@ -37,9 +38,9 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   if (username && password) {
     const l = await login(username, password);
-    res.json(!!l);
+    res.json({ ok: true, data: { username: l.username, name: l.name } });
   } else {
-    res.json("Problema ao efetuar login.");
+    res.json({ ok: false, message: "Problema ao efetuar login." });
   }
 });
 
@@ -48,9 +49,9 @@ app.post("/reset", async (req, res) => {
   const { username, password } = req.body;
   if (username && password) {
     const l = await reset(username, password);
-    res.json(l);
+    res.json({ ok: true });
   } else {
-    res.json("Problema ao atualizar senha.");
+    res.json({ ok: false, message: "Problema ao atualizar senha." });
   }
 });
 
@@ -90,12 +91,15 @@ app.post("/property", async (req, res) => {
       valor
     );
     if (p) {
-      res.json(!!p);
+      res.json({ ok: true });
     } else {
-      res.json("Já existe um imóvel com este número de inscrição.");
+      res.json({
+        ok: false,
+        message: "Já existe um imóvel com este número de inscrição.",
+      });
     }
   } else {
-    res.json("Problema ao inserir imóvel.");
+    res.json({ ok: false, message: "Problema ao inserir imóvel." });
   }
 });
 
@@ -106,7 +110,7 @@ app.post("/update", async (req, res) => {
     const item = await updatePropertyState(nrInscricao, situacao);
     res.json(item);
   } else {
-    res.json("Problema ao atualizar imóvel.");
+    res.json({ ok: false, message: "Problema ao atualizar imóvel." });
   }
 });
 
@@ -118,7 +122,7 @@ app.post("/interest", async (req, res) => {
     const item = await addInterest(nr_inscricao, nome, telefone);
     res.json(item);
   } else {
-    res.json("Problema ao inscrever interesse.");
+    res.json({ ok: false, message: "Problema ao inscrever interesse." });
   }
 });
 
