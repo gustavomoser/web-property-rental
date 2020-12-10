@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import Home from "./pages/home/Home.jsx"
 import Login from "./pages/login/Login.jsx"
 import Cadastro from "./pages/login/Cadastro.jsx"
@@ -21,13 +21,11 @@ export default function App() {
   }
 
   return (
-    <div>
-      <BrowserRouter>
+    <BrowserRouter>
         <Route component={renderHome} path="/" exact />
         <Route component={renderLogin} path="/login" exact />
         <Route component={Cadastro} path="/cadastro" exact />
         <Route component={ResetPassword} path="/reset" exact />
-      </BrowserRouter>
-    </div>
+    </BrowserRouter>
   )
 }
