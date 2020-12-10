@@ -15,6 +15,7 @@ export default function Header(){
             <div className="header-right">
                 <Link to="/cadastro" className="header-text">Cadastre-se</Link>
                 <Link to="/login" className="header-text">Login</Link>
+                <p className="header-text">Você está logado como FULANO</p>
             </div>
         </header>
     )

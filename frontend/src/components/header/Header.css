@@ -29,7 +29,15 @@ header a:hover {
     transition: 1s;
 }
 
+header p {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    margin: 0%;
+}
+
 .header-text {
+    color: #f2f2f2;
     padding: 2.4%;
 }
 
