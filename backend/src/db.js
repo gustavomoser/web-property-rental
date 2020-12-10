@@ -52,6 +52,7 @@ export async function updatePropertyState(nr_inscricao, situacao) {
 
 export async function addProperty(
   nr_inscricao,
+  titulo,
   img,
   endereco,
   tipo,
@@ -65,6 +66,7 @@ export async function addProperty(
   if (!!getProperty(nrInscricao)) {
     insert = await collection.insertOne({
       nr_inscricao,
+      titulo,
       img,
       endereco,
       tipo,
