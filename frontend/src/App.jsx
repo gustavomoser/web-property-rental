@@ -6,12 +6,10 @@ import Cadastro from "./pages/login/Cadastro.jsx"
 import {Route, BrowserRouter, Link} from "react-router-dom"
 export default function App(){
     return(
-        <div>
-            <BrowserRouter>
-                <Route component={Home} path="/" exact/>
-                <Route component={Login} path="/login" exact/>
-                <Route component={Cadastro} path="/cadastro" exact/>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            <Route component={Home} path="/" exact/>
+            <Route component={Login} path="/login" exact/>
+            <Route component={Cadastro} path="/cadastro" exact/>
+        </BrowserRouter>
     )
 }
