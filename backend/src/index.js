@@ -38,9 +38,14 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   if (username && password) {
     const l = await login(username, password);
-    res.json({ ok: true, data: { username: l.username, name: l.name } });
+
+    if (l) {
+      return res.json({ ok: true, data: { username: l.username, name: l.name } });
+    } else {
+      return res.json({ ok: false, message: "Problema ao efetuar login." });
+    }
   } else {
-    res.json({ ok: false, message: "Problema ao efetuar login." });
+    return res.json({ ok: false, message: "Problema ao efetuar login." });
   }
 });
 
