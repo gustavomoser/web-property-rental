@@ -1,53 +1,17 @@
-import "./App.css"
+import react from "react";
 import React from "react"
-
-export default function App() {
-  return (
-    <div className="App">
-      <header>
-        <p>
-          Mongo Imóveis
-        </p>
-        <div className="Login">
-          <p>
-            Você está logado como FULANO
-          </p>
-          <p>
-            Sair
-          </p>
+import Home from "./pages/home/Home.jsx"
+import Login from "./pages/login/Login.jsx"
+import Cadastro from "./pages/login/Cadastro.jsx"
+import {Route, BrowserRouter, Link} from "react-router-dom"
+export default function App(){
+    return(
+        <div>
+            <BrowserRouter>
+                <Route component={Home} path="/" exact/>
+                <Route component={Login} path="/login" exact/>
+                <Route component={Cadastro} path="/cadastro" exact/>
+            </BrowserRouter>
         </div>
-      </header>
-
-      <body>
-        <div className="Sidebar">
-          <h3>
-            Filtros
-          </h3>
-          <p>Preço</p>
-          <div className="Filtro">
-            <p>De R$</p>
-            <input></input>
-          </div>
-          <div className="Filtro">
-            <p>Até R$</p>
-            <input></input>
-          </div>
-
-          <p>Tipo de Imóvel</p>
-          <div className="Filtro">
-            <input type="radio" value="casa" id="casa" name="tipoImovel" />
-            <label htmlFor="casa">Casa</label>
-
-            <input type="radio" value="apartamento" id="apartamento" name="tipoImovel"/>
-            <label htmlFor="apartamento">Apto</label>
-          </div>
-
-          <button type="button">Aplicar Filtros</button>
-          
-        </div>
-      </body>
-
-
-    </div >
-  )
+    )
 }
