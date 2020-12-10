@@ -58,6 +58,7 @@ app.post("/reset", async (req, res) => {
 app.post("/property", async (req, res) => {
   const {
     nrInscricao,
+    titulo,
     img,
     endereco,
     tipo,
@@ -69,6 +70,7 @@ app.post("/property", async (req, res) => {
   if (
     nrInscricao &&
     img &&
+    titulo &&
     endereco &&
     tipo &&
     nrDormitorios &&
@@ -78,6 +80,7 @@ app.post("/property", async (req, res) => {
   ) {
     const p = await addProperty(
       nrInscricao,
+      titulo,
       img,
       endereco,
       tipo,
