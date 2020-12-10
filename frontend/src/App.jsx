@@ -7,8 +7,8 @@ import {Route, BrowserRouter} from "react-router-dom"
 export default function App(){
     return(
         <BrowserRouter>
-            <Route component={Home} path="/" exact/>
-            <Route component={Login} path="/login" exact/>
+            <Route component={Home} path="/login" exact/>
+            <Route component={Login} path="/" exact/>
         </BrowserRouter>
     )
 }
