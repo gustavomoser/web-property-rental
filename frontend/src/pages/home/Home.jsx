@@ -1,10 +1,22 @@
 import "./Home.css"
 import React from "react"
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
     <div className="App">
       <header>
+        <div className="header-left">
+          <a href="#contact"className="header-text">Contato</a>
+        </div>
+
+        <div className="header-right">
+          <Link to="/cadastro" className="header-text">Cadastre-se</Link>
+          <Link to="/login" className="header-text">Login</Link>
+        </div>
+      </header>
+      
+      {/* <header>
         <p>
           Mongo Imóveis
         </p>
@@ -16,7 +28,7 @@ export default function Home() {
             Sair
           </p>
         </div>
-      </header>
+      </header> */}
 
       <body>
         <div className="Sidebar">

@@ -1,13 +1,14 @@
 import "./Login.css"
 import React from "react"
 import { Link } from 'react-router-dom'
-// import logo from "./imagens/logo-branco.png"
+import logo from "./imagens/logo-branco.png"
 
 export default function Login(){
     return(
         <div className="Login">
             <header>
                 <div className="header-left">
+                    <img className="header-logo" src={logo}></img>
                     <a href="#contact"className="header-text">Contato</a>
                 </div>
 
