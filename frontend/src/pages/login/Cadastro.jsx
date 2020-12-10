@@ -1,10 +1,10 @@
-import "./Cadastro.css"
+import "./Login.css"
 import React from "react"
 // import logo from "./imagens/logo-branco.png"
 
 export default function Login(){
     return(
-        <div className="Cadastro">
+        <div className="Login">
             <header>
                 <div className="header-left">
                     <a href="#contact"className="header-text">Contato</a>
