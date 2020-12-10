@@ -4,22 +4,17 @@ import React from "react"
 
 export default function Login(){
     return(
-
-        <body>
-            <div className="header">
+        <div className="Login">
+            <header>
                 <div className="header-left">
-                    {/* <img className="header-logo" src={logo}></img> */}
-                        {/* <a href="index.html">
-                            
-                        </a> */}
-                        <a href="#contact"className="header-text">Contato</a>
-                    </div>
+                    <a href="#contact"className="header-text">Contato</a>
+                </div>
 
-                    <div className="header-right">
-                        <a href="#cadastro"className="header-text">Cadastre-se</a>
-                        <a href="#login"className="header-text">Login</a>
-                    </div>
-            </div>
+                <div className="header-right">
+                    <a href="#cadastro"className="header-text">Cadastre-se</a>
+                    <a href="#login"className="header-text">Login</a>
+                </div>
+            </header>
 
             <div className="container">
                 <div className="register">
@@ -31,7 +26,8 @@ export default function Login(){
                     </form>
                 </div>
             </div>
-        </body>
+        </div>
+        
 
 
 
