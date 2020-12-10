@@ -1,31 +1,15 @@
 import "./Home.css"
 import React from "react"
 import Header from "../../components/header/Header.jsx"
+import { Link } from "react-router-dom"
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className="App">
-      <Header/>
-      
-      {/* <header>
-        <p>
-          Mongo Imóveis
-        </p>
-        <div className="Login">
-          <p>
-            Você está logado como FULANO
-          </p>
-          <p>
-            Sair
-          </p>
-        </div>
-      </header> */}
-
-      <body>
+      <Header />
+      <div>
         <div className="Sidebar">
-          <h3>
-            Filtros
-          </h3>
+          <h3>Filtros</h3>
           <p>Preço</p>
           <div className="Filtro">
             <p>De R$</p>
@@ -41,16 +25,16 @@ export default function Home() {
             <input type="radio" value="casa" id="casa" name="tipoImovel" />
             <label htmlFor="casa">Casa</label>
 
-            <input type="radio" value="apartamento" id="apartamento" name="tipoImovel"/>
+            <input type="radio" value="apartamento" id="apartamento" name="tipoImovel" />
             <label htmlFor="apartamento">Apto</label>
           </div>
 
           <button type="button">Aplicar Filtros</button>
-          
+          <Link to="/reset">
+            <button type="button">reset</button>
+          </Link>
         </div>
-      </body>
-
-
-    </div >
+      </div>
+    </div>
   )
 }
