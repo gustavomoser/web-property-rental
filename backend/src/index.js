@@ -35,6 +35,7 @@ app.get("/properties", async (req, res) => {
 // REQUISICOES PARA UM CORRETOR
 // requisição para aprovar login
 app.post("/login", async (req, res) => {
+  console.log(req.body);
   const { username, password } = req.body;
   if (username && password) {
     const l = await login(username, password);

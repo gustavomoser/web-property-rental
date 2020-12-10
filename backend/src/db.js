@@ -8,6 +8,7 @@ export async function connect() {
       console.log(err);
     }
     driver = conn.db("WEB_PROPERTY_RENTAL");
+    console.log("conectado com o mongo");
   });
 }
 
