@@ -1,5 +1,6 @@
 import "./Login.css"
 import React from "react"
+import { Link } from 'react-router-dom'
 // import logo from "./imagens/logo-branco.png"
 
 export default function Login(){
@@ -11,8 +12,8 @@ export default function Login(){
                 </div>
 
                 <div className="header-right">
-                    <a href="#cadastro"className="header-text">Cadastre-se</a>
-                    <a href="#login"className="header-text">Login</a>
+                    <Link to="/cadastro" className="header-text">Cadastre-se</Link>
+                    <Link to="/login" className="header-text">Login</Link>
                 </div>
             </header>
 
