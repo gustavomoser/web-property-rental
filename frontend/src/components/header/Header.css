@@ -1,0 +1,78 @@
+/* @font-face {
+    font-family: Roboto Slab;
+    src: url('fonte/RobotoSlab-VariableFont_wght.ttf');
+ } */
+
+ .Header {
+    margin: 0;
+    padding: 0;
+    /* font-family: "Roboto Slab", sans-serif; */
+}
+
+header {
+    background: #000000;
+    display: flex;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+header a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2vw;
+    font-weight: 600;
+}
+
+header a:hover {
+    background: #4682B4;
+    transition: 1s;
+}
+
+.header-text {
+    padding: 2.4%;
+}
+
+.header-logo {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 2%;
+    padding: 0%;
+    max-width: auto;
+    max-height: 60px;
+}
+
+.header-left {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.header-right {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    padding-right: 2%;
+}
+
+.post-list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.header-post {
+    height: 12%;
+    width: 100%;
+}
