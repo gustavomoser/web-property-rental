@@ -16,7 +16,32 @@ export default function AddProperty(props) {
     setFormData({ ...formData, [name]: value })
   }
 
-  const handleSubmit = (event) => {}
+  const handleSubmit = (event) => {
+    if (!nrInscricao ||
+      !descricao ||
+      !endereco ||
+      !tipo ||
+      !nrQuartos ||
+      !nrBanheiros ||
+      !nrGaragens || !valor) {
+      alert("Preencha os campos corretamente")
+    } else {
+      const response = await addProperty({ nrInscricao,
+        descricao,
+        endereco,
+        tipo,
+        nrQuartos,
+        nrBanheiros,
+        nrGaragens, valor })
+      if (!response?.ok) {
+        alert(response.message)
+      } else {
+        alert("Imóvel salvo com sucesso!")
+        history.push("/")
+      }
+    }
+
+  }
 
   return (
     <div className="Login">
