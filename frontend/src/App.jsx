@@ -27,12 +27,10 @@ export default function App() {
   }
 
   return (
-    <div>
-      <BrowserRouter>
-        <Route component={renderHome} path="/" exact />
-        <Route component={renderLogin} path="/login" exact />
-        <Route component={renderReset} path="/reset" exact />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Route component={renderHome} path="/" exact />
+      <Route component={renderLogin} path="/login" exact />
+      <Route component={renderReset} path="/reset" exact />
+    </BrowserRouter>
   )
 }

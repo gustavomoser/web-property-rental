@@ -13,10 +13,6 @@ header {
     background: #000000;
     display: flex;
     width: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1;
 }
 
 header a {
@@ -33,7 +29,15 @@ header a:hover {
     transition: 1s;
 }
 
+header p {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    margin: 0%;
+}
+
 .header-text {
+    color: #f2f2f2;
     padding: 2.4%;
 }
 
@@ -41,6 +45,7 @@ header a:hover {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 2%;
+    margin-right: 2%;
     padding: 0%;
     max-width: auto;
     max-height: 60px;
