@@ -12,6 +12,8 @@ import {
 import express from "express";
 import http from "http";
 import path from "path";
+import { MONGO_URL } from "./env";
+import { MongoClient } from "mongodb";
 import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
@@ -38,11 +40,13 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   if (username && password) {
     const l = await login(username, password);
-
-    if (l) {
-      return res.json({ ok: true, data: { username: l.username, name: l.name } });
+    if (!l) {
+      res.json({ ok: false, message: "Usuário ou senha incorretos." });
     } else {
-      return res.json({ ok: false, message: "Problema ao efetuar login." });
+      res.json({
+        ok: true,
+        data: { username: l.username, name: l.nome, firstLogin: l.first_login },
+      });
     }
   } else {
     return res.json({ ok: false, message: "Problema ao efetuar login." });
@@ -132,5 +136,24 @@ app.post("/interest", async (req, res) => {
 });
 
 const server = http.createServer(app);
-connect();
-server.listen(PORT, () => console.log(`Rodando em ${PORT}`));
+let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
+driver.connect((err, conn) => {
+  if (err) {
+    console.log(err);
+  } else {
+    driver = conn.db("WEB_PROPERTY_RENTAL");
+    console.log("Conexão com MongoDB estabelecida");
+  }
+});
+
+driver.once("open", () => {
+  server.emit("ready");
+});
+
+server.on("ready", () => {
+  server.listen(PORT, () =>
+    console.log(`App disponível em http://localhost:${PORT}`)
+  );
+});
+
+export { driver };
