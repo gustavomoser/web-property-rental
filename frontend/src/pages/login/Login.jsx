@@ -31,6 +31,7 @@ export default function Login(props) {
         alert(response.message)
       } else {
         alert("Login efetuado com sucesso")
+        console.log(response.data)
         setInfo({
           logged: response.ok,
           username: response.data.username,
@@ -62,15 +63,17 @@ export default function Login(props) {
             ) : (
               <input type="text" name="password" placeholder="Senha" onChange={handleInputChange} />
             )}
-            <button class="button-eye" onClick={handleClickSee}>
+            <button className="button-eye" onClick={handleClickSee}>
               {see ? <FiEye /> : <FiEyeOff />}
             </button>
-            <button className="back-button" onClick={handleVoltar}>
-              Voltar
-            </button>
-            <button type="submit" className="submit-button">
-              Login
-            </button>
+            <div className="button-group">
+              <button className="goback-button" onClick={handleVoltar}>
+                Voltar
+              </button>
+              <button type="submit" className="tosubmit-button">
+                Login
+              </button>
+            </div>
           </form>
         </div>
       </div>

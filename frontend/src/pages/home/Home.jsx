@@ -1,9 +1,9 @@
 import "./Home.css"
 import React, { useState } from "react"
 import Header from "../../components/header/Header.jsx"
-import { Link } from "react-router-dom"
 
 export default function Home(props) {
+  const { info, setInfo } = props
   const [filtroData, setFiltroData] = useState({
     precoMinimo: "",
     precoMaximo: "",
@@ -22,7 +22,7 @@ export default function Home(props) {
 
   return (
     <div className="App">
-      <Header />
+      <Header info={info} setInfo={setInfo} />
       <div className="Sidebar">
         <div className="FiltroParent">
           <h3>Filtros</h3>

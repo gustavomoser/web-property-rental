@@ -31,7 +31,7 @@ export async function reset(form) {
 }
 
 export async function addProperty(form) {
-  const jsonData = JSON.stringify({ username: form.username, password: form.password })
+  const jsonData = JSON.stringify({ ...form })
 
   const resp = await window.fetch(`/property`, {
     method: "POST",

@@ -32,7 +32,8 @@ export default function AddProperty(props) {
         tipo,
         nrQuartos,
         nrBanheiros,
-        nrGaragens, valor })
+        nrGaragens, 
+        valor })
       if (!response?.ok) {
         alert(response.message)
       } else {
@@ -48,27 +49,32 @@ export default function AddProperty(props) {
       <Header />
       <div className="container">
         <div className="register">
-          <p className="title-register">Faça seu login:</p>
+          <p className="title-register">Cadastre um imóvel:</p>
           <form onSubmit={handleSubmit}>
             <input type="number" name="nrInscricao" onChange={handleInputChange} />
             <input name="descricao" onChange={handleInputChange} />
             <input name="endereco" onChange={handleInputChange} />
             <fieldset>
               <legend>
-                <h2>Tipo do imóvel</h2>
+                <h2>Tipo do imóvel:</h2>
               </legend>
               <div>
-                <label htmlFor="casa">Casa</label>
-                <input type="radio" name="casa" value="casa" checked={type === "casa"} />
+                <label htmlFor="tipo">Casa</label>
+                <input type="radio" name="tipo" value="casa" checked={type === "casa"} />
               </div>
               <div>
-                <label htmlFor="apto">Apartamento</label>
-                <input type="radio" name="apto" value="apartamento" checked={type === "apartamento"} />
+                <label htmlFor="tipo">Apartamento</label>
+                <input type="radio" name="tipo" value="apartamento" checked={type === "apartamento"} />
               </div>
             </fieldset>
+            <label htmlFor="nrQuartos">Numero de quartos:</label>
             <input type="number" name="nrQuartos" onChange={handleInputChange} />
+            <label htmlFor="nrBanheiros">Numero de banheiros:</label>
             <input type="number" name="nrBanheiros" onChange={handleInputChange} />
+            <label htmlFor="nrGaragens">Numero de vagas na garagem:</label>
             <input type="number" name="nrGaragens" onChange={handleInputChange} />
+            <label htmlFor="valor">Valor:</label>
+            <input type="number" name="valor" onChange={handleInputChange} />
             <div>
               <button className="submit-button">Cancelar</button>
               <button type="submit" className="submit-button">

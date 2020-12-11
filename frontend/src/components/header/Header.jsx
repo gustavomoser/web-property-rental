@@ -21,13 +21,13 @@ export default function Header(props) {
         <div className="header-right">
           {info?.username ? (
             <>
-              <div>
-                <span>{`Bem vindo, ${info.name}`}</span>
-                <br />
-                <button onClick={handleClickSair}>
+              <Link className="header-text-logged" onClick={handleClickSair}>
+                <div>
+                  <span>{`Bem vindo, ${info.name}`}</span>
+                  <br />
                   <span>Sair</span>
-                </button>
-              </div>
+                </div>
+              </Link>
               <Link to="/reset" className="header-text">
                 Alterar senha
               </Link>
