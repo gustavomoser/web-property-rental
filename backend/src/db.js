@@ -11,7 +11,10 @@ export async function reset(username, newPassword) {
   const collection = driver.collection("user");
   const query = { username };
   const toUpdate = {
-    $set: { password: newPassword },
+    $set: {
+      password: newPassword,
+      first_login: false,
+    },
   };
   const updated = await collection.updateOne(query, toUpdate);
   return updated;
