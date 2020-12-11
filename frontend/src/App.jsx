@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, {useState} from "react"
+=======
+import React, { useState } from "react"
+>>>>>>> 700b12acb4ca757d0cd4b541bdd272fe479780e8
 import Home from "./pages/home/Home.jsx"
 import Login from "./pages/login/Login.jsx"
 import Cadastro from "./pages/login/Cadastro.jsx"

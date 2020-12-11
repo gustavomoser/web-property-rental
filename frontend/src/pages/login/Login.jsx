@@ -1,4 +1,5 @@
 import "./Login.css"
+import { FiEyeOff, FiEye } from "react-icons/fi"
 import React, { useState } from "react"
 import { login } from "../../model/requests"
 import Header from "../../components/header/Header.jsx"
@@ -30,6 +31,8 @@ export default function Login(props) {
     }
   }
 
+  const handleVoltar = () => history.push("/")
+
   return (
     <div className="Login">
       <Header />
@@ -43,9 +46,17 @@ export default function Login(props) {
             ) : (
               <input type="text" name="password" placeholder="Senha" onChange={handleInputChange} />
             )}
-            <button type="submit" className="submit-button">
-              Login
+            <button class="button-eye" onClick={() => setSee(!see)}>
+              {see ? <FiEye /> : <FiEyeOff />}
             </button>
+            <div>
+              <button className="submit-button" onClick={handleVoltar}>
+                Voltar
+              </button>
+              <button type="submit" className="submit-button">
+                Login
+              </button>
+            </div>
           </form>
         </div>
       </div>
