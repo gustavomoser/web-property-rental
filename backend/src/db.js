@@ -98,7 +98,7 @@ export async function getPropertiesWithFilter(filter) {
   }
 
   if (filter.banheiros) {
-    _banheiros = parseInt(filter.nr_banheiros);
+    const _banheiros = parseInt(filter.nr_banheiros);
     if (_banheiros >= 3) {
       query.nr_banheiros = { $gte: _banheiros }
     } else {
@@ -107,7 +107,7 @@ export async function getPropertiesWithFilter(filter) {
   }
 
   if (filter.quartos) {
-    _quartos = parseInt(filter.quartos);
+    const _quartos = parseInt(filter.quartos);
     if (_quartos >= 3) {
       query.nr_dormitorios = { $gte: _quartos }
     } else {
@@ -116,8 +116,8 @@ export async function getPropertiesWithFilter(filter) {
   }
 
   if (filter.garagem) {
-    _garagem = parseInt(filter.garagem);
-    if (_quartos >= 2) {
+    const _garagem = parseInt(filter.garagem);
+    if (_garagem >= 2) {
       query.nr_vagas_garagem = { $gte: _garagem }
     } else {
       query.nr_vagas_garagem = _garagem;

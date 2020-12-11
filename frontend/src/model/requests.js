@@ -39,7 +39,6 @@ export async function reset(form) {
 
 export async function getProperties(filtroData) {
   const jsonData= JSON.stringify({...filtroData})
-  console.log(window.location)
   const resp = await window.fetch('/properties', {
     method: "POST",
     headers: { "content-type": "application/json" },

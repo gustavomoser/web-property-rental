@@ -31,8 +31,8 @@ export default function Home(props) {
     <div className="App">
       <Header/>
       <div className="Sidebar">
-        <form>
-          <div className="FiltroParent" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}> 
+          <div className="FiltroParent" >
             <h3>Filtros</h3>
             <p className="filtro-title">Preço do Aluguel</p>
             <div className="Filtro">
