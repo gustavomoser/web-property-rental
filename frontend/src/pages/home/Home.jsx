@@ -22,7 +22,6 @@ export default function Home(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log("The patreon is crazy")
     const response = await getProperties(filtroData)
     console.log(response)
   }
