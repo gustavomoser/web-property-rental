@@ -20,7 +20,7 @@ export default function PropertiesList(props) {
 
   return (
     <div className="post-list">
-      {properties ? properties.map((item, index) => <PropertyBox data={convertToListItemObject(item)} key={index}/>) : "Nenhum imóvel cadastrado"}
+      {properties?.length > 0 ? properties.map((item, index) => <PropertyBox data={convertToListItemObject(item)} key={index}/>) : "Nenhum imóvel cadastrado"}
     </div>
   )
 }
