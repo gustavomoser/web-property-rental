@@ -81,19 +81,6 @@
     font-size: 1.1vw;
 }
 
-.image-post {
-    width: 50%;
-    margin: 1%;
-    border-radius: 0.5vw;
-}
-
-.title-post {
-    font-weight: 600;
-    font-size: 1.5vw;
-    margin: 1%;
-    text-shadow: 2px 2px 2px rgb(116, 114, 114);
-}
-
 .title-register {
     font-size: 1.5vw;
     font-weight: 600;
