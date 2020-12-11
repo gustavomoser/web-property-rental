@@ -92,29 +92,48 @@ export async function getPropertiesWithFilter(filter) {
   const collection = driver.collection("property");
 
   var query = {};
-  if (filter.tipo) {
-    query.tipo = filter.tipo;
-  }
-  if (filter.nr_banheiros) {
-    query.nr_banheiros = parseInt(filter.nr_banheiros);
-  }
-  if (filter.nr_dormitorios) {
-    query.nr_dormitorios = parseInt(filter.nr_dormitorios);
-  }
-  if (filter.nr_vagas_garagem) {
-    query.nr_vagas_garagem = parseInt(filter.nr_vagas_garagem);
+
+  if (filter.tipoImovel) {
+    query.tipo = filter.tipoImovel;
   }
 
-  if (filter.valorMaximo && filter.valorMinimo) {
+  if (filter.banheiros) {
+    _banheiros = parseInt(filter.nr_banheiros);
+    if (_banheiros >= 3) {
+      query.nr_banheiros = { $gte: _banheiros }
+    } else {
+      query.nr_banheiros = _banheiros;
+    };
+  }
+
+  if (filter.quartos) {
+    _quartos = parseInt(filter.quartos);
+    if (_quartos >= 3) {
+      query.nr_dormitorios = { $gte: _quartos }
+    } else {
+      query.nr_dormitorios = _quartos;
+    };
+  }
+
+  if (filter.garagem) {
+    _garagem = parseInt(filter.garagem);
+    if (_quartos >= 2) {
+      query.nr_vagas_garagem = { $gte: _garagem }
+    } else {
+      query.nr_vagas_garagem = _garagem;
+    };
+  }
+
+  if (filter.precoMaximo && filter.precoMinimo) {
     query.valor = {
-      $lte: parseFloat(filter.valorMaximo),
-      $gte: parseFloat(filter.valorMinimo),
+      $lte: parseFloat(filter.precoMaximo),
+      $gte: parseFloat(filter.precoMinimo),
     };
   } else {
-    if (filter.valorMaximo) {
-      query.valor = { $lte: parseFloat(filter.valorMaximo) };
-    } else if (filter.valorMinimo) {
-      query.valor = { $gte: parseFloat(filter.valorMinimo) };
+    if (filter.precoMaximo) {
+      query.valor = { $lte: parseFloat(filter.precoMaximo) };
+    } else if (filter.precoMinimo) {
+      query.valor = { $gte: parseFloat(filter.precoMinimo) };
     }
   }
   const properties = await collection.find(query).toArray();

@@ -24,6 +24,7 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
 app.get("/properties", async (req, res) => {
+  console.log("O patrão ficou maluco")
   const filter = req.query;
   if (filter) {
     const properties = await getPropertiesWithFilter(filter);
