@@ -2,24 +2,6 @@
   text-align: center;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #0069D0;
-  color: white;
-}
-
-.Login {
-  padding: 10px;
-  background-color: #002451;
-  text-align: left;
-}
-
-.Login p {
-  margin: 0px;
-}
-
 .Sidebar {
   background-color: #D3D4DD;
   height: 100%;
@@ -27,14 +9,17 @@ header {
   position: fixed;
   z-index: 1;
   left: 0;
+  
 }
 
-.Sidebar p {
-  margin: 0px;
+.FiltroParent {
+  overflow-y: scroll;
+  height: 60%;
 }
 
 .Filtro {
-  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,9 +27,34 @@ header {
 
 .Filtro p {
   font-size: 16px;
+  margin: 0px;
 }
 
 .Filtro input {
   width: 50%;
   height: 16px;
+}
+
+.FiltroRadio {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.filtro-title {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.filtro-button {
+  margin-top: 24px;
+  background-color: #4682B4;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
