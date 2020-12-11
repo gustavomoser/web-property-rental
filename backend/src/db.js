@@ -1,16 +1,4 @@
-import { MONGO_URL } from "./env";
-import { MongoClient } from "mongodb";
-let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
-
-export async function connect() {
-  driver.connect((err, conn) => {
-    if (err) {
-      console.log(err);
-    }
-    driver = conn.db("WEB_PROPERTY_RENTAL");
-    console.log("conectado com o mongo");
-  });
-}
+import { driver } from "./index";
 
 export async function login(username, password) {
   const collection = driver.collection("user");
