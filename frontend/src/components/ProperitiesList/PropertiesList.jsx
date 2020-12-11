@@ -17,7 +17,7 @@ export default function PropertiesList(props) {
   }
 
   return (
-    <div class="post-list">
+    <div className="post-list">
       {properties ? properties.map((item) => <PropertyBox data={convertToListItemObject(item)} />) : "Nenhum imóvel cadastrado"}
     </div>
   )

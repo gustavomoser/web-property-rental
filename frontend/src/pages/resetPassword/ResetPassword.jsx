@@ -5,8 +5,9 @@ import { FiEyeOff, FiEye } from "react-icons/fi"
 import "./ResetPassword.css"
 import React from "react"
 
-export default function ResetPassword() {
+export default function ResetPassword(props) {
   const history = useHistory()
+  const { info, setInfo } = props
   const [seeFirst, setSeeFirst] = useState(false)
   const [seeSecond, setSeeSecond] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true)
@@ -34,14 +35,14 @@ export default function ResetPassword() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const username = "admin"
     const { password } = formData
-    const response = await reset({ username, password })
+    const response = await reset({ username: info.username, password })
 
     if (!response?.ok) {
       alert(response.message)
     } else {
       alert("Senha alterada com sucesso")
+      setInfo({ ...info, first: false })
       history.push("/")
     }
   }

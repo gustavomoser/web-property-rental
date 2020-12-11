@@ -4,9 +4,10 @@ import Header from "../../components/header/Header.jsx"
 import { Link } from "react-router-dom"
 
 export default function Home(props) {
+  const { info, setInfo } = props
   return (
     <div className="App">
-      <Header />
+      <Header info={info} setInfo={setInfo} />
       <div>
         <div className="Sidebar">
           <h3>Filtros</h3>
