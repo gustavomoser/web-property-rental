@@ -24,6 +24,7 @@ export default function Home(props) {
     <div className="App">
       <Header/>
       <div className="Sidebar">
+        <div className="FiltroParent">
         <h3>Filtros</h3>
         <p className="filtro-title">Preço do Aluguel</p>
         <div className="Filtro">
@@ -81,13 +82,9 @@ export default function Home(props) {
           <input type="radio" value="2+" id="garagem-2+" name="garagem" onChange={handleInputChange}/>
           <label htmlFor="garagem-2+">2+ vagas</label><br/>
         </div>
+        </div>
 
-      
         <button className="filtro-button" type="button">Aplicar Filtros</button>
-
-        <Link to="/reset">
-          <button type="button">reset</button>
-        </Link>
           
       </div>
     </div >
