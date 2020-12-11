@@ -49,7 +49,7 @@ app.post("/login", async (req, res) => {
       });
     }
   } else {
-    res.json({ ok: false, message: "Problema ao efetuar login." });
+    return res.json({ ok: false, message: "Problema ao efetuar login." });
   }
 });
 
