@@ -139,7 +139,6 @@ export default function Home(props) {
           <PropertiesList properties={properties} logged={info.logged} setRefetch={setRefetch} />
         </div>
       </div>
-      
     </div>
   )
 }
