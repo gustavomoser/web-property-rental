@@ -19,9 +19,7 @@ import { MongoClient } from "mongodb";
 import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
-app.use(express.json());
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS
@@ -70,7 +68,7 @@ app.post("/reset", async (req, res) => {
 app.get("/interests", async (req, res) => {
   const l = await getInterests()
   res.json(l);
-}) 
+})
 
 // requisição para cadastrar imóvel
 app.post("/property", async (req, res) => {

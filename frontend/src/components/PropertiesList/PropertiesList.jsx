@@ -8,6 +8,7 @@ export default function PropertiesList(props) {
   const convertToListItemObject = (item) => {
     return {
       nr_inscricao: item.nr_inscricao,
+      imagem: item.img,
       titulo: item.titulo,
       endereco: item.endereco,
       dormitorios: item.nr_dormitorios,
@@ -22,8 +23,8 @@ export default function PropertiesList(props) {
     <div className="post-list">
       {properties?.length > 0
         ? properties.map((item, index) => (
-            <PropertyBox data={convertToListItemObject(item)} key={index} logged={logged} setRefetch={setRefetch} />
-          ))
+          <PropertyBox data={convertToListItemObject(item)} key={index} logged={logged} setRefetch={setRefetch} />
+        ))
         : "Nenhum imóvel cadastrado"}
     </div>
   )
