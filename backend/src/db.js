@@ -109,7 +109,7 @@ export async function getPropertiesWithFilter(filter) {
   }
 
   if (filter.banheiros) {
-    const _banheiros = parseInt(filter.nr_banheiros);
+    const _banheiros = parseInt(filter.banheiros);
     if (_banheiros >= 3) {
       query.nr_banheiros = { $gte: _banheiros };
     } else {
