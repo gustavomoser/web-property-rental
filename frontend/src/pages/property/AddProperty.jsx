@@ -25,13 +25,13 @@ export default function AddProperty(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const { nrInscricao, descricao, endereco, tipo, nrQuartos, nrBanheiros, nrGaragens, valor } = formData
+    const { nrInscricao, descricao, endereco, tipo, nrQuartos, nrBanheiros, nrGaragens, valor, img } = formData
     if (!nrInscricao || !descricao || !endereco || !tipo || !nrQuartos || !nrBanheiros || !nrGaragens || !valor) {
       alert("Preencha os campos corretamente.")
     } else {
       const response = await addProperty({
         nrInscricao,
-        img: "img",
+        img: img,
         titulo: descricao,
         endereco,
         tipo,
@@ -58,6 +58,23 @@ export default function AddProperty(props) {
     var charCode = evt.which ? evt.which : evt.keyCode
     if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) return false
     return true
+  }
+
+  function onImageChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      let img = event.target.files[0]
+      const reader = new FileReader()
+
+      reader.onload = (function () {
+        return function (e) {
+          const binaryData = e.target.result
+          const base64String = window.btoa(binaryData)
+          setFormData({ ...formData, img: base64String })
+        }
+      })(img)
+
+      reader.readAsBinaryString(img)
+    }
   }
 
   return (
@@ -143,6 +160,7 @@ export default function AddProperty(props) {
                 <input type="number" name="valor" min="0" onChange={handleInputChange} onKeyPress={isNumberKey} />
               </div>
             </div>
+            <input type="file" name="image" onChange={onImageChange} />
             <div className="button-group">
               <button className="goback-button" onClick={handleVoltar}>
                 Voltar

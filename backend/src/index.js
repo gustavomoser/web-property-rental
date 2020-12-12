@@ -19,9 +19,7 @@ import { MongoClient } from "mongodb";
 import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
-app.use(express.json());
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(express.static(path.resolve(__dirname, "../public")));
 
 // REQUISIÇÕES BÁSICAS

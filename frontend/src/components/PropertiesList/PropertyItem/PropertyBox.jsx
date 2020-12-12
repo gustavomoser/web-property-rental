@@ -60,7 +60,7 @@ export default function PropertyBox(props) {
         <p className="title-post">{data.titulo}</p>
       </div>
       <div className="content-post">
-        <img className="image-post" src="imagens/casa1.jpg" />
+        <img className="image-post" src={`data:image/jpg;base64, ${data.imagem}`} />
         <div className="info-post">
           <span className={data.situacao === "disponivel" ? "status available" : "status"}>
             {data.situacao.toUpperCase()}
@@ -95,8 +95,8 @@ export default function PropertyBox(props) {
                 </form>
               </div>
             ) : (
-              <span> Você já registrou seu interesse para este imóvel.</span>
-            )}
+                  <span> Você já registrou seu interesse para este imóvel.</span>
+                )}
           </div>
         </div>
       </div>
