@@ -66,9 +66,9 @@ app.post("/reset", async (req, res) => {
 
 // requisição para buscar interesses
 app.get("/interests", async (req, res) => {
-  const l = await getInterests()
+  const l = await getInterests();
   res.json(l);
-})
+});
 
 // requisição para cadastrar imóvel
 app.post("/property", async (req, res) => {
@@ -148,9 +148,9 @@ app.post("/interest", async (req, res) => {
 app.post("/delete", async (req, res) => {
   const { nr_inscricao, nome, telefone } = req.body;
   const del = await removeInterest(nr_inscricao, nome, telefone);
+  console.log(del);
   res.json(del);
 });
-
 
 const server = http.createServer(app);
 let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
