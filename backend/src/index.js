@@ -1,7 +1,6 @@
 import { PORT } from "./env";
 import {
   addProperty,
-  connect,
   getProperties,
   getPropertiesWithFilter,
   login,
@@ -16,7 +15,6 @@ import http from "http";
 import path from "path";
 import { MONGO_URL } from "./env";
 import { MongoClient } from "mongodb";
-import { genSaltSync, hashSync, compareSync } from "bcryptjs";
 
 const app = express();
 app.use(express.json({ limit: "50mb" }));
