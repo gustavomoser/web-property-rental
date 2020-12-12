@@ -5,7 +5,7 @@ import { getProperties } from "../../model/requests"
 import PropertiesList from "../../components/PropertiesList/PropertiesList.jsx"
 
 export default function Home(props) {
-  const { info } = props
+  const { info, setInfo } = props
   const [filtroData, setFiltroData] = useState({
     precoMinimo: "",
     precoMaximo: "",
@@ -40,7 +40,7 @@ export default function Home(props) {
 
   return (
     <div className="App">
-      <Header />
+      <Header info={info} setInfo={setInfo} />
       <div className="Sidebar">
         <form onSubmit={handleSubmit}>
           <div className="FiltroParent">
@@ -64,7 +64,13 @@ export default function Home(props) {
               <input type="radio" value="casa" id="tipo-casa" name="tipoImovel" onChange={handleInputChange} />
               <label htmlFor="tipo-casa">Casa</label>
               <br />
-              <input type="radio" value="apartamento" id="tipo-apartamento" name="tipoImovel" onChange={handleInputChange} />
+              <input
+                type="radio"
+                value="apartamento"
+                id="tipo-apartamento"
+                name="tipoImovel"
+                onChange={handleInputChange}
+              />
               <label htmlFor="tipo-apartamento">Apartamento</label>
               <br />
             </div>
