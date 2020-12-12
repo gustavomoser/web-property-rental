@@ -1,4 +1,5 @@
 import "./PropertyBox.css"
+import React from "react"
 
 export default function PropertyBox(props) {
   const { data } = props

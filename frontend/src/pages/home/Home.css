@@ -2,17 +2,32 @@
   text-align: center;
 }
 
+.home-body {
+  display: flex;
+}
+
+.properties-parent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%;
+  padding-right: 160px;
+}
+
+.Teste{
+  height: 100px;
+  width: 100px;
+  background-color: crimson;
+}
+
 .Sidebar {
   background-color: #d3d4dd;
-  height: 100%;
   width: 220px;
-  position: fixed;
-  z-index: 1;
-  left: 0;
 }
 
 .FiltroParent {
-  overflow-y: scroll;
   height: 60%;
 }
 
