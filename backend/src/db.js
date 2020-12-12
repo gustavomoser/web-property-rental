@@ -39,7 +39,10 @@ export async function updatePropertyState(nr_inscricao, situacao) {
     $set: { situacao },
   };
   const updated = await collection.updateOne(query, toUpdate);
-  return updated;
+  if (!updated) {
+    return { ok: false, message: "Não foi possível atualizar registro" };
+  }
+  return { ok: true };
 }
 
 export async function addProperty(
@@ -67,6 +70,7 @@ export async function addProperty(
       nr_banheiros: parseInt(nr_banheiros),
       nr_vagas_garagem: parseInt(nr_vagas_garagem),
       valor: parseFloat(valor),
+      situacao: "disponivel",
     });
   }
   return insert;
@@ -143,6 +147,11 @@ export async function getPropertiesWithFilter(filter) {
       query.valor = { $gte: parseFloat(filter.precoMinimo) };
     }
   }
+
+  if (!filter.logged) {
+    query.situacao = { $in: ["disponivel", "reservado"] };
+  }
+
   const properties = await collection.find(query).toArray();
   return properties;
 }

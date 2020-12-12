@@ -114,9 +114,9 @@ app.post("/property", async (req, res) => {
 
 // requisição para alterar situação de um imóvel
 app.post("/update", async (req, res) => {
-  const { nrInscricao, situacao } = req.body;
-  if (nrInscricao && situacao) {
-    const item = await updatePropertyState(nrInscricao, situacao);
+  const { nr_inscricao, situacao } = req.body;
+  if (nr_inscricao && situacao) {
+    const item = await updatePropertyState(nr_inscricao, situacao);
     res.json(item);
   } else {
     res.json({ ok: false, message: "Problema ao atualizar imóvel." });

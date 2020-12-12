@@ -3,7 +3,7 @@ import PropertyBox from "./PropertyItem/PropertyBox.jsx"
 import React from "react"
 
 export default function PropertiesList(props) {
-  const { properties, logged } = props
+  const { properties, logged, setRefetch } = props
 
   const convertToListItemObject = (item) => {
     console.log(item)
@@ -23,7 +23,7 @@ export default function PropertiesList(props) {
     <div className="post-list">
       {properties?.length > 0
         ? properties.map((item, index) => (
-            <PropertyBox data={convertToListItemObject(item)} key={index} logged={logged} />
+            <PropertyBox data={convertToListItemObject(item)} key={index} logged={logged} setRefetch={setRefetch} />
           ))
         : "Nenhum imóvel cadastrado"}
     </div>
