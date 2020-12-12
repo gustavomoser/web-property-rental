@@ -7,17 +7,13 @@
 }
 
 .properties-parent {
-  /* background-color: cornflowerblue;
-  height: 100px;
-  margin-left: 15%;
-  margin-right: 15%; */
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 5%;
-  /* background-color: cornflowerblue; */
+  padding-right: 160px;
 }
 
 .Teste{
@@ -28,15 +24,10 @@
 
 .Sidebar {
   background-color: #d3d4dd;
-  height: 100%;
   width: 220px;
-  position: fixed;
-  z-index: 1;
-  left: 0;
 }
 
 .FiltroParent {
-  overflow-y: scroll;
   height: 60%;
 }
 
