@@ -61,3 +61,14 @@ export async function getProperties(filtroData) {
 
   return jsonResponse
 }
+
+export async function getInterests() {
+  const resp = await window.fetch('/interests')
+
+  if (resp.ok === false) {
+    throw new Error("Não foi possível acessar dados no servidor.")
+  }
+  const jsonResponse = await resp.json()
+
+  return jsonResponse
+}

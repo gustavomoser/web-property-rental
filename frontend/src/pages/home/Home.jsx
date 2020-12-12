@@ -20,8 +20,6 @@ export default function Home(props) {
     const response = await getProperties(filtroData)
     const listProperties = [...response]
     setProperties(listProperties)
-
-    console.log(listProperties)
   }, [])
 
   const handleInputChange = (event) => {
@@ -49,7 +47,6 @@ export default function Home(props) {
               <p className="filtro-title">Preço do Aluguel</p>
               <div className="Filtro">
                 <p>De R$</p>
-                {/* <input type="text" name="username" placeholder="Nome de usuário" onChange={handleInputChange} /> */}
                 <input name="precoMinimo" placeholder="Min" onChange={handleInputChange}></input>
               </div>
               <div className="Filtro">
@@ -124,7 +121,6 @@ export default function Home(props) {
                 <br />
               </div>
             </div>
-            {/* <button className="filtro-button" type="submit" value="Aplicar Filtros"/> */}
             <button className="filtro-button" type="submit">
               Aplicar Filtros
             </button>
@@ -132,7 +128,6 @@ export default function Home(props) {
         </div>
         <div className="properties-parent">
           <PropertiesList properties={properties}/>
-          {/* <div className="Teste"/> */}
         </div>
       </div>
     </div >
