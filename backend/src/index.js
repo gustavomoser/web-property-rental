@@ -9,6 +9,7 @@ import {
   updatePropertyState,
   addInterest,
   getInterests,
+  removeInterest,
 } from "./db";
 import express from "express";
 import http from "http";
@@ -141,6 +142,13 @@ app.post("/interest", async (req, res) => {
     res.json({ ok: false, message: "Problema ao inscrever interesse." });
   }
 });
+
+app.post("/delete", async (req, res) => {
+  const { nr_inscricao, nome, telefone } = req.body;
+  const del = await removeInterest(nr_inscricao, nome, telefone);
+  res.json(del);
+});
+
 
 const server = http.createServer(app);
 let driver = new MongoClient(MONGO_URL, { useUnifiedTopology: true });

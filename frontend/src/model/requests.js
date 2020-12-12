@@ -69,6 +69,22 @@ export async function getInterests() {
     throw new Error("Não foi possível acessar dados no servidor.")
   }
   const jsonResponse = await resp.json()
+  console.log(jsonResponse)
+  return jsonResponse
+}
+
+export async function removeInterests(data) {
+  const jsonData= JSON.stringify({...data})
+  const resp = await window.fetch('/delete', {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: jsonData,
+  })
+
+  if (resp.ok === false) {
+    throw new Error("Não foi possível acessar dados no servidor.")
+  }
+  const jsonResponse = await resp.json()
 
   return jsonResponse
 }
