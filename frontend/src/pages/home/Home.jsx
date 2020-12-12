@@ -136,13 +136,10 @@ export default function Home(props) {
           </form>
         </div>
         <div className="properties-parent">
-          <PropertiesList properties={properties} />
+          <PropertiesList properties={properties} logged={info.logged} setRefetch={setRefetch} />
         </div>
       </div>
-      <div className="properties-parent">
-        <PropertiesList properties={properties} logged={info.logged} setRefetch={setRefetch} />
-        {/* <div className="Teste"/> */}
-      </div>
+      
     </div>
   )
 }
