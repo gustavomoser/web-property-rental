@@ -2,4 +2,5 @@ semi: false
 singleQuote: false
 jsxSingleQuote: false
 trailingComma: es5
-printWidth: 140
+printWidth: 120
+tabWidth: 2

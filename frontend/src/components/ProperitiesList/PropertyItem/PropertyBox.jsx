@@ -3,14 +3,14 @@ import "./PropertyBox.css"
 export default function PropertyBox(props) {
   const { data } = props
   return (
-    <div class="container-post">
-      <div class="header-post">
-        <p class="title-post">{data.titulo}</p>
+    <div className="container-post">
+      <div className="header-post">
+        <p className="title-post">{data.titulo}</p>
       </div>
-      <div class="content-post">
-        <img class="image-post" src="imagens/casa1.jpg" />
-        <div class="info-post">
-          <p class="status available">{data.status}</p>
+      <div className="content-post">
+        <img className="image-post" src="imagens/casa1.jpg" />
+        <div className="info-post">
+          <p className="status available">{data.status}</p>
           <p>{`Endereço: ${data.endereco}`}</p>
           <p>{`Dormitorios: ${data.dormitorios}`}</p>
           <p>{`Banheiros: ${data.banheiros}`}</p>

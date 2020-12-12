@@ -3,9 +3,11 @@ import { FiEyeOff, FiEye } from "react-icons/fi"
 import React, { useState } from "react"
 import { login } from "../../model/requests"
 import Header from "../../components/header/Header.jsx"
+import { useHistory } from "react-router-dom"
 
 export default function Login(props) {
   const { setInfo } = props
+  const history = useHistory()
 
   const [see, setSee] = useState(false)
   const [formData, setFormData] = useState({
@@ -21,14 +23,28 @@ export default function Login(props) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const { username, password } = formData
-    const response = await login({ username, password })
-    console.log(response)
-    if (!response?.ok) {
-      alert(response.message)
+    if (!username && !password) {
+      alert("Preencha os campos corretamente")
     } else {
-      alert("Senha alterada com sucesso")
-      history.push("/")
+      const response = await login({ username, password })
+      if (!response?.ok) {
+        alert(response.message)
+      } else {
+        alert("Login efetuado com sucesso")
+        setInfo({
+          logged: response.ok,
+          username: response.data.username,
+          name: response.data.name,
+          first: response.data.firstLogin,
+        })
+        history.push(response.data.firstLogin ? "/reset" : "/")
+      }
     }
+  }
+
+  const handleClickSee = (e) => {
+    e.preventDefault()
+    setSee(!see)
   }
 
   const handleVoltar = () => history.push("/")
@@ -46,14 +62,14 @@ export default function Login(props) {
             ) : (
               <input type="text" name="password" placeholder="Senha" onChange={handleInputChange} />
             )}
-            <button class="button-eye" onClick={() => setSee(!see)}>
+            <button className="button-eye" onClick={handleClickSee}>
               {see ? <FiEye /> : <FiEyeOff />}
             </button>
-            <div>
-              <button className="submit-button" onClick={handleVoltar}>
+            <div className="button-group">
+              <button className="goback-button" onClick={handleVoltar}>
                 Voltar
               </button>
-              <button type="submit" className="submit-button">
+              <button type="submit" className="tosubmit-button">
                 Login
               </button>
             </div>
