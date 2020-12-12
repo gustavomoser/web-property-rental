@@ -21,7 +21,7 @@ export default function Header(props) {
         <div className="header-right">
           {info?.username ? (
             <>
-              <Link className="header-text-logged" onClick={handleClickSair}>
+              <Link className="header-text-logged" to="/" onClick={handleClickSair}>
                 <div>
                   <span>{`Bem vindo, ${info.name}`}</span>
                   <br />
@@ -30,6 +30,9 @@ export default function Header(props) {
               </Link>
               <Link to="/reset" className="header-text">
                 Alterar senha
+              </Link>
+              <Link to="/add" className="header-text">
+                Adicionar imóvel
               </Link>
             </>
           ) : (

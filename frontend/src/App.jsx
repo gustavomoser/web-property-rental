@@ -3,6 +3,7 @@ import Home from "./pages/home/Home.jsx"
 import Login from "./pages/login/Login.jsx"
 import { Route, BrowserRouter } from "react-router-dom"
 import ResetPassword from "./pages/resetPassword/ResetPassword.jsx"
+import AddProperty from "./pages/property/AddProperty.jsx"
 
 export const defaultInfo = {
   logged: false,
@@ -26,11 +27,16 @@ export default function App() {
     return <ResetPassword info={info} setInfo={setInfo} />
   }
 
+  const renderAddProperty = () => {
+    return <AddProperty info={info} setInfo={setInfo} />
+  }
+
   return (
     <BrowserRouter>
       <Route component={renderHome} path="/" exact />
       <Route component={renderLogin} path="/login" exact />
       <Route component={renderReset} path="/reset" exact />
+      <Route component={renderAddProperty} path="/add" exact />
     </BrowserRouter>
   )
 }
