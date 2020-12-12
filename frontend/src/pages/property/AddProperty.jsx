@@ -49,7 +49,10 @@ export default function AddProperty(props) {
     }
   }
 
-  const handleVoltar = () => history.push("/")
+  const handleVoltar = (event) => {
+    event.preventDefault()
+    history.goBack()
+  }
 
   function isNumberKey(evt) {
     var charCode = evt.which ? evt.which : evt.keyCode

@@ -23,10 +23,13 @@ export default function Header(props) {
             <>
               <Link className="header-text-logged" to="/" onClick={handleClickSair}>
                 <div>
-                  <span>{`Bem vindo, ${info.name}`}</span>
+                  <span>{`Bem vindo, ${info.name}!`}</span>
                   <br />
                   <span>Sair</span>
                 </div>
+              </Link>
+              <Link to="/" className="header-text">
+                Voltar para a página inicial
               </Link>
               <Link to="/reset" className="header-text">
                 Alterar senha

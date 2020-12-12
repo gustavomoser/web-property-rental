@@ -20,11 +20,8 @@ export default function Interests(props) {
       const list = [...response]
       setInterests(list)
       setRefetch(false)
-      console.log(list)
     }
   }, [refetch])
-
-  console.log(interests)
 
   return (
     <div className="Interests">
