@@ -47,6 +47,11 @@ export default function ResetPassword(props) {
     }
   }
 
+  const handleVoltar = (event) => {
+    event.preventDefault()
+    history.goBack()
+  }
+
   return (
     <div class="container">
       <div class="register">
@@ -73,9 +78,14 @@ export default function ResetPassword(props) {
           </button>
           <br />
           {!passwordMatch && <label style={{ color: "red" }}>Senhas não correspondem</label>}
-          <button type="submit" class="submit-button">
-            Salvar
-          </button>
+          <div className="button-group">
+            <button className="goback-button" onClick={handleVoltar}>
+              Voltar
+            </button>
+            <button type="submit" className="tosubmit-button">
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     </div>
