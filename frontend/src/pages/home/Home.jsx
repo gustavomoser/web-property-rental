@@ -15,7 +15,6 @@ export default function Home(props) {
     garagem: "",
   })
 
-<<<<<<< HEAD
   const [properties, setProperties] = useState()
   useEffect(async () => {
     const response = await getProperties(filtroData)
@@ -25,8 +24,6 @@ export default function Home(props) {
     console.log(listProperties)
   }, [])
 
-=======
->>>>>>> 985ccff17a98fd8f41dba6658cb6299a1559432f
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setFiltroData({ ...filtroData, [name]: value })
