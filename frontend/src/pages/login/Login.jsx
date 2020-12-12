@@ -31,7 +31,6 @@ export default function Login(props) {
         alert(response.message)
       } else {
         alert("Login efetuado com sucesso")
-        console.log(response.data)
         setInfo({
           logged: response.ok,
           username: response.data.username,

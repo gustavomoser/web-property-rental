@@ -19,12 +19,9 @@ export default function Home(props) {
     setFiltroData({ ...filtroData, [name]: value })
   }
 
-  console.log(filtroData)
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await getProperties(filtroData)
-    console.log(response)
   }
 
   return (
