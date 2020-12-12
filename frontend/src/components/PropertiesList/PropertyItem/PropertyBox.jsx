@@ -17,11 +17,11 @@ export default function PropertyBox(props) {
     if (!interest.nome || !interest.telefone) {
       alert("Preencha todos os campos.")
     } else {
-      const response = await registerInterest(interest)
+      const response = await registerInterest({ ...interest, nr_inscricao: data.nr_inscricao })
       if (response.ok) {
         alert("Interesse registrado com sucesso!")
         setInterestSend(true)
-        setInterest({ ...defaultInterest, nrInterest: data.nrInscricao })
+        setInterest({ ...defaultInterest, nr_inscricao: data.nr_inscricao })
       } else {
         alert(response.message)
       }
@@ -47,22 +47,24 @@ export default function PropertyBox(props) {
           <p>{`Banheiros: ${data.banheiros}`}</p>
           <p>{`Vagas na garagem: ${data.vagas}`}</p>
           <p>{`Valor do aluguel: R$${data.valor}`}</p>
+          <div>
+            {logged ? (
+              <span></span>
+            ) : !interestSend ? (
+              <div>
+                <form onSubmit={handleSubmit}>
+                  <input name="nome" placeholder="Nome completo" onChange={handleInputChange} />
+                  <br />
+                  <input name="telefone" placeholder="Telefone para contato" onChange={handleInputChange} />
+                  <br />
+                  <button type="submit">Enviar</button>
+                </form>
+              </div>
+            ) : (
+              <span> Você já enviou interesse para este imóvel.</span>
+            )}
+          </div>
         </div>
-      </div>
-      <div>
-        {logged ? (
-          <span></span>
-        ) : (
-          interestSend && (
-            <div>
-              <form onSubmit={handleSubmit}>
-                <input name="nome" onChange={handleInputChange} />
-                <input name="telefone" onChange={handleInputChange} />
-                <button type="submit">Enviar interesse</button>
-              </form>
-            </div>
-          )
-        )}
       </div>
     </div>
   )

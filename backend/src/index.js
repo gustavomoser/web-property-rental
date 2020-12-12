@@ -129,7 +129,11 @@ app.post("/interest", async (req, res) => {
   const { nome, telefone, nr_inscricao } = req.body;
   if (nr_inscricao && telefone && nome) {
     const item = await addInterest(nr_inscricao, nome, telefone);
-    res.json(item);
+    if (!item?.ok) {
+      res.json(item);
+    } else {
+      res.json({ ok: true });
+    }
   } else {
     res.json({ ok: false, message: "Problema ao inscrever interesse." });
   }

@@ -20,8 +20,6 @@ export default function Home(props) {
     const response = await getProperties(filtroData)
     const listProperties = [...response]
     setProperties(listProperties)
-
-    console.log(listProperties)
   }, [])
 
   const handleInputChange = (event) => {
@@ -34,8 +32,6 @@ export default function Home(props) {
     const response = await getProperties(filtroData)
     const listProperties = [...response]
     setProperties(listProperties)
-
-    console.log(listProperties)
   }
 
   return (
