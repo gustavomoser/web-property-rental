@@ -11,7 +11,10 @@ export async function reset(username, newPassword) {
   const collection = driver.collection("user");
   const query = { username };
   const toUpdate = {
-    $set: { password: newPassword },
+    $set: {
+      password: newPassword,
+      first_login: false,
+    },
   };
   const updated = await collection.updateOne(query, toUpdate);
   return updated;
@@ -26,7 +29,7 @@ export async function getProperties() {
 export async function getPropertyByInscricao(nr_inscricao) {
   const collection = driver.collection("property");
   const property = await collection.findOne({ nr_inscricao });
-  return !!property;
+  return property;
 }
 
 export async function updatePropertyState(nr_inscricao, situacao) {
@@ -52,7 +55,8 @@ export async function addProperty(
 ) {
   const collection = driver.collection("property");
   let insert = null;
-  if (!!getProperty(nrInscricao)) {
+  const exist = await getPropertyByInscricao(nr_inscricao);
+  if (!exist) {
     insert = await collection.insertOne({
       nr_inscricao,
       titulo,
