@@ -45,3 +45,19 @@ export async function addProperty(form) {
   const jsonResponse = await resp.json()
   return jsonResponse
 }
+
+export async function getProperties(filtroData) {
+  const jsonData= JSON.stringify({...filtroData})
+  const resp = await window.fetch('/properties', {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: jsonData,
+  })
+
+  if (resp.ok === false) {
+    throw new Error("Não foi possível acessar dados no servidor.")
+  }
+  const jsonResponse = await resp.json()
+
+  return jsonResponse
+}
