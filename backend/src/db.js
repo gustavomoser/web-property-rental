@@ -159,15 +159,12 @@ export async function getPropertiesWithFilter(filter) {
 export async function getInterests() {
   const collection = driver.collection("interest");
   const interests = await collection.find().toArray();
-<<<<<<< HEAD
-=======
   return interests;
 }
 
 export async function removeInterest(nr_inscricao, nome, telefone) {
   const collection = driver.collection("interest");
-  const interests = await collection.remove({nr_inscricao, nome, telefone})
+  const interests = await collection.remove({ nr_inscricao, nome, telefone });
   console.log(interests);
->>>>>>> cc78503ae9f20d8fd964c308b71d33e90966d30a
   return interests;
 }
