@@ -1,0 +1,14 @@
+.List {
+    
+    margin: 5% 10%;
+  }
+
+.List h1 {
+    padding: 1%;
+    text-align: center;
+    color: white;
+    background: #4682b4;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 9px #888888;
+}
+

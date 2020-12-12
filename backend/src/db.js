@@ -155,3 +155,9 @@ export async function getPropertiesWithFilter(filter) {
   const properties = await collection.find(query).toArray();
   return properties;
 }
+
+export async function getInterests() {
+  const collection = driver.collection("interests");
+  const interests = await collection.find().toArray();
+  return interests;
+}

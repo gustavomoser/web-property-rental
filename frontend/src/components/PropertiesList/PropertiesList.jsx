@@ -6,7 +6,6 @@ export default function PropertiesList(props) {
   const { properties, logged, setRefetch } = props
 
   const convertToListItemObject = (item) => {
-    console.log(item)
     return {
       nr_inscricao: item.nr_inscricao,
       titulo: item.titulo,

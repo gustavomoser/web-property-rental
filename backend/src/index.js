@@ -8,6 +8,7 @@ import {
   reset,
   updatePropertyState,
   addInterest,
+  getInterests,
 } from "./db";
 import express from "express";
 import http from "http";
@@ -63,6 +64,12 @@ app.post("/reset", async (req, res) => {
     res.json({ ok: false, message: "Problema ao atualizar senha." });
   }
 });
+
+// requisição para buscar interesses
+app.get("/interests", async (req, res) => {
+  const l = await getInterests()
+  res.json(l);
+}) 
 
 // requisição para cadastrar imóvel
 app.post("/property", async (req, res) => {
