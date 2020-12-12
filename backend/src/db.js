@@ -163,8 +163,29 @@ export async function getInterests() {
 }
 
 export async function removeInterest(nr_inscricao, nome, telefone) {
-  const collection = driver.collection("interest");
-  const interests = await collection.remove({ nr_inscricao, nome, telefone });
-  console.log(interests);
-  return interests;
+  const property = await getPropertyByInscricao(nr_inscricao);
+  if (property.situacao !== "disponivel") {
+    return {
+      ok: false,
+      message: "O imóvel não está disponível para reserva.",
+    };
+  } else {
+    const collection = driver.collection("interest");
+    const interests = await collection.remove({ nr_inscricao, nome, telefone });
+    const properties = driver.collection("property");
+    const updated = await properties.updateOne(
+      { nr_inscricao },
+      {
+        $set: { situacao: "reservado" },
+      }
+    );
+    if (interests && updated) {
+      return { ok: true };
+    } else {
+      return {
+        ok: false,
+        message: "Problema ao resolver situação de interesse.",
+      };
+    }
+  }
 }
