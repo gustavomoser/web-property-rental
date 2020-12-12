@@ -122,9 +122,9 @@ app.post("/property", async (req, res) => {
 
 // requisição para alterar situação de um imóvel
 app.post("/update", async (req, res) => {
-  const { nrInscricao, situacao } = req.body;
-  if (nrInscricao && situacao) {
-    const item = await updatePropertyState(nrInscricao, situacao);
+  const { nr_inscricao, situacao } = req.body;
+  if (nr_inscricao && situacao) {
+    const item = await updatePropertyState(nr_inscricao, situacao);
     res.json(item);
   } else {
     res.json({ ok: false, message: "Problema ao atualizar imóvel." });
@@ -137,7 +137,11 @@ app.post("/interest", async (req, res) => {
   const { nome, telefone, nr_inscricao } = req.body;
   if (nr_inscricao && telefone && nome) {
     const item = await addInterest(nr_inscricao, nome, telefone);
-    res.json(item);
+    if (!item?.ok) {
+      res.json(item);
+    } else {
+      res.json({ ok: true });
+    }
   } else {
     res.json({ ok: false, message: "Problema ao inscrever interesse." });
   }

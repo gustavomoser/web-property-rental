@@ -34,6 +34,9 @@ export default function Header(props) {
               <Link to="/add" className="header-text">
                 Adicionar imóvel
               </Link>
+              <Link to="/interests" className="header-text">
+                Ver interessados
+              </Link>
             </>
           ) : (
             <Link to="/login" className="header-text">

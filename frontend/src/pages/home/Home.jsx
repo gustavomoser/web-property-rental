@@ -13,14 +13,25 @@ export default function Home(props) {
     quartos: "",
     banheiros: "",
     garagem: "",
+    logged: info.logged,
   })
+  const [refetch, setRefetch] = useState(false)
 
   const [properties, setProperties] = useState()
   useEffect(async () => {
     const response = await getProperties(filtroData)
     const listProperties = [...response]
     setProperties(listProperties)
-  }, [])
+  }, [info.logged])
+
+  useEffect(async () => {
+    if (refetch) {
+      const response = await getProperties(filtroData)
+      const listProperties = [...response]
+      setProperties(listProperties)
+      setRefetch(false)
+    }
+  }, [refetch])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -32,8 +43,6 @@ export default function Home(props) {
     const response = await getProperties(filtroData)
     const listProperties = [...response]
     setProperties(listProperties)
-
-    console.log(listProperties)
   }
 
   return (
@@ -127,9 +136,13 @@ export default function Home(props) {
           </form>
         </div>
         <div className="properties-parent">
-          <PropertiesList properties={properties}/>
+          <PropertiesList properties={properties} />
         </div>
       </div>
-    </div >
+      <div className="properties-parent">
+        <PropertiesList properties={properties} logged={info.logged} setRefetch={setRefetch} />
+        {/* <div className="Teste"/> */}
+      </div>
+    </div>
   )
 }

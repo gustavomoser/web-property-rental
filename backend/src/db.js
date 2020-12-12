@@ -39,7 +39,10 @@ export async function updatePropertyState(nr_inscricao, situacao) {
     $set: { situacao },
   };
   const updated = await collection.updateOne(query, toUpdate);
-  return updated;
+  if (!updated) {
+    return { ok: false, message: "Não foi possível atualizar registro" };
+  }
+  return { ok: true };
 }
 
 export async function addProperty(
@@ -67,6 +70,7 @@ export async function addProperty(
       nr_banheiros: parseInt(nr_banheiros),
       nr_vagas_garagem: parseInt(nr_vagas_garagem),
       valor: parseFloat(valor),
+      situacao: "disponivel",
     });
   }
   return insert;
@@ -76,9 +80,12 @@ export async function addInterest(nr_inscricao, nome, telefone) {
   const property = await getPropertyByInscricao(nr_inscricao);
   if (property) {
     const collection = driver.collection("interest");
-    const length = await collection.find({ nome, telefone });
-    if (length > 3) {
-      return "Você atingiu o número máximo de requisições de interesse.";
+    const aux = await collection.find({ nome, telefone }).toArray();
+    if (aux.length > 2) {
+      return {
+        ok: false,
+        message: "Você atingiu o número máximo de requisições de interesse.",
+      };
     } else {
       const item = await collection.insertOne({
         nr_inscricao,
@@ -88,7 +95,7 @@ export async function addInterest(nr_inscricao, nome, telefone) {
       return item;
     }
   } else {
-    return "Este imóvel não existe.";
+    return { ok: false, message: "Este imóvel não existe." };
   }
 }
 
@@ -104,28 +111,28 @@ export async function getPropertiesWithFilter(filter) {
   if (filter.banheiros) {
     const _banheiros = parseInt(filter.nr_banheiros);
     if (_banheiros >= 3) {
-      query.nr_banheiros = { $gte: _banheiros }
+      query.nr_banheiros = { $gte: _banheiros };
     } else {
       query.nr_banheiros = _banheiros;
-    };
+    }
   }
 
   if (filter.quartos) {
     const _quartos = parseInt(filter.quartos);
     if (_quartos >= 3) {
-      query.nr_dormitorios = { $gte: _quartos }
+      query.nr_dormitorios = { $gte: _quartos };
     } else {
       query.nr_dormitorios = _quartos;
-    };
+    }
   }
 
   if (filter.garagem) {
     const _garagem = parseInt(filter.garagem);
     if (_garagem >= 2) {
-      query.nr_vagas_garagem = { $gte: _garagem }
+      query.nr_vagas_garagem = { $gte: _garagem };
     } else {
       query.nr_vagas_garagem = _garagem;
-    };
+    }
   }
 
   if (filter.precoMaximo && filter.precoMinimo) {
@@ -140,6 +147,11 @@ export async function getPropertiesWithFilter(filter) {
       query.valor = { $gte: parseFloat(filter.precoMinimo) };
     }
   }
+
+  if (!filter.logged) {
+    query.situacao = { $in: ["disponivel", "reservado"] };
+  }
+
   const properties = await collection.find(query).toArray();
   return properties;
 }
@@ -152,7 +164,7 @@ export async function getInterests() {
 
 export async function removeInterest(nr_inscricao, nome, telefone) {
   const collection = driver.collection("interest");
-  const interests = await collection.remove({nr_inscricao, nome, telefone})
+  const interests = await collection.remove({ nr_inscricao, nome, telefone });
   console.log(interests);
   return interests;
 }

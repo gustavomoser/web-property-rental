@@ -38,11 +38,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Route component={renderHome} path="/interests" exact />
+      <Route component={renderHome} path="/" exact />
       <Route component={renderLogin} path="/login" exact />
       <Route component={renderReset} path="/reset" exact />
       <Route component={renderAddProperty} path="/add" exact />
-      <Route component={renderInterests} path="/" exact />
+      <Route component={renderInterests} path="/interests" exact />
     </BrowserRouter>
   )
 }
