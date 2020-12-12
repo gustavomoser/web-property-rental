@@ -1,6 +1,6 @@
 */**/node_modules
 *.lock
 */**/.env
-# */public/*
+*/public/*
 .vscode
 .eslintcache.json
