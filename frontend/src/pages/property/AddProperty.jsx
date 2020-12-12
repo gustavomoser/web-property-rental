@@ -157,7 +157,12 @@ export default function AddProperty(props) {
                 <input type="number" name="valor" min="0" onChange={handleInputChange} onKeyPress={isNumberKey} />
               </div>
             </div>
-            <input type="file" name="image" onChange={onImageChange} />
+            <div style={{ marginTop: "1rem" }}>
+              <label htmlFor="valor" style={{ marginRight: "2px" }}>
+                Imagem (.jpg):
+                </label>
+              <input type="file" name="image" onChange={onImageChange} />
+            </div>
             <div className="button-group">
               <button className="goback-button" onClick={handleVoltar}>
                 Voltar
